@@ -1,12 +1,19 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-    username : {
-        type : String,
-        unique : true
-    }
+const Schema = mongoose.Schema;
+
+const WorkoutSchema = new Schema({
+    name: {
+        type: String,
+        unique: true
+    },
+    exercises: [
+        {
+            type: String
+        }
+    ]
 });
 
-const User = mongoose.model("User", userSchema);
+const WorkOut = mongoose.model("WorkOut", WorkoutSchema);
 
-module.exports = User;
+module.exports = WorkOut;
