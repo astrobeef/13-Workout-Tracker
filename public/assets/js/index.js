@@ -10,17 +10,23 @@ const newWorkout = [];
 
 const API = {
     sendWorkout: function (workout) {
-        return $.ajax({
-            url: `api/workoutPlans`,
-            type: "POST",
-            data: {
-                "exercises" : workout
-            }
-        }).then(function () {
-            location.reload();
+        return $.post("api/workoutPlans",workout ,function(data, status){
+            alert(`${data} , ${status}`);
         })
     }
 }
+
+newWorkout[0] = {
+    "exercise-name" : "test1"
+};
+
+newWorkout[1] = {
+    "exercise-name" : "test2"
+};
+
+console.log(convertArrayToObject(newWorkout));
+
+API.sendWorkout(convertArrayToObject(newWorkout));
 
 $exerciseType.change(function () {
 
@@ -106,7 +112,7 @@ $exerciseSend.click((event) => {
     switch ($(event.target).attr("id")) {
         case ("finished-workout"):
 
-            API.sendWorkout(newWorkout);
+            API.sendWorkout(convertArrayToObject(newWorkout));
             break;
         case ("add-another-exercise"):
             break;
