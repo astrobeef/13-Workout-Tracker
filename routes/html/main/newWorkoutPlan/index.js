@@ -6,10 +6,10 @@ const router = require("express").Router();
 const db = require('../../../../models');
 
 //Get route
-router.get("/", function(req, res){
-    res.send("New Workout Plan");
-});
+router.get("/", function (req, res) {
 
-//Paths
+    res.render("newWorkoutPlan");
+
+});
 
 module.exports = router;

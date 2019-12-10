@@ -10,11 +10,11 @@ const PORT = process.env.PORT || 3400;
 const db = require("./models");
 
 db.workoutPlans.deleteMany({}, (err) => {
-    if(err) throw err;
+    if (err) throw err;
 
     console.log("Deleted all documents");
-    
-require("./models/seeds");
+
+    require("./models/seeds");
 });
 
 const app = express();
@@ -35,7 +35,7 @@ app.engine(
 );
 
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {useNewUrlParser : true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
 
 app.set("view engine", "handlebars");
 
