@@ -8,10 +8,6 @@ const db = require('../models');
 //Paths
 
 router.use("/api", require("./api"));
-
-//Get route
-router.get("/", function(req, res){
-    res.send(200);
-});
+router.use("", require("./html"));
 
 module.exports = router;

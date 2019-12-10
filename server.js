@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const logger = require("morgan");
 const mongoose = require("mongoose");
@@ -6,6 +8,14 @@ const exphbs = require("express-handlebars");
 const PORT = process.env.PORT || 3400;
 
 const db = require("./models");
+
+db.workoutPlans.deleteMany({}, (err) => {
+    if(err) throw err;
+
+    console.log("Deleted all documents");
+    
+require("./models/seeds");
+});
 
 const app = express();
 
@@ -23,6 +33,7 @@ app.engine(
         defaultLayout: "main"
     })
 );
+
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", {useNewUrlParser : true});
 
