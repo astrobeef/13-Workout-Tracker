@@ -18,10 +18,11 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
     //This route will add a new workout into the database.
 
-    const iName = req.body.name;
+    console.log(req.body);
+
     const iExercises = req.body.exercises;
 
-    db.workoutPlans.create({ name: iName, exercises: [...iExercises] }, function (err, workout) {
+    db.workoutPlans.create({ exercises: [...iExercises] }, function (err, workout) {
         if (err) throw (err);
 
         console.log(workout);
