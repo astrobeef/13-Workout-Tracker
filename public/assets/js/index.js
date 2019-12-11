@@ -5,28 +5,30 @@ const $exerciseParams = $("#exercise-params");
 const $exerciseSend = $(".complete");
 const $finishedWorkout = $("#finished-workout");
 const $addExercise = $("add-another-exercise");
+const $modal = $(".modal");
+const $modalTitle = $(".modal-title");
 
 const newWorkout = [];
 
 const API = {
-    sendWorkout: function (workout) {
-        return $.post("api/workoutPlans",workout ,function(data, status){
-            alert(`${data} , ${status}`);
-        })
+    sendWorkout: async function (workout) {
+
+        const response = await fetch("api/workoutPlans", {
+            method : 'POST',
+            mode: 'cors',
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            redirect : "follow",
+            referrer: "no-referrer",
+            body : JSON.stringify(workout)
+        });
+
+        return await response.json();
     }
 }
-
-newWorkout[0] = {
-    "exercise-name" : "test1"
-};
-
-newWorkout[1] = {
-    "exercise-name" : "test2"
-};
-
-console.log(convertArrayToObject(newWorkout));
-
-API.sendWorkout(convertArrayToObject(newWorkout));
 
 $exerciseType.change(function () {
 
@@ -105,14 +107,11 @@ function appendParameter(pDiv, pInfoArr) {
 }
 
 $exerciseSend.click((event) => {
-
-    event.preventDefault();
     constructExerciseFromParameters();
 
     switch ($(event.target).attr("id")) {
         case ("finished-workout"):
-
-            API.sendWorkout(convertArrayToObject(newWorkout));
+            API.sendWorkout(newWorkout);
             break;
         case ("add-another-exercise"):
             break;
