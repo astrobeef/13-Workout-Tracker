@@ -34,7 +34,6 @@ app.engine(
     })
 );
 
-
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workoutdb", { useNewUrlParser: true });
 
 app.set("view engine", "handlebars");
@@ -46,4 +45,4 @@ console.log(PORT);
 
 app.listen(PORT, () => {
     console.log(`App running on http://localhost:${PORT}`);
-});;
+});; 
