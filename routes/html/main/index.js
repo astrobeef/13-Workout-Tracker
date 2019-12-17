@@ -26,5 +26,6 @@ router.get("/", function (req, res) {
 
 router.use("/stats", require("./stats"));
 router.use("/new", require("./newWorkoutPlan"));
+router.use("/all", require("./allWorkoutPlans"));
 
 module.exports = router;
